@@ -1,21 +1,47 @@
 #include <iostream>
+#include <cmath>
+#include <cstring>
 
 using namespace std;
 
-bool isPrime[1121] = {true, true};
-int prime[190];
-int primeCnt;
+bool isPrime[1121];
+int sizeMax = 1120;
+
+int prime[1121] = { 0 };
+int primeCnt = 1;
+
+int pCnt[1130][15] = { 1 };
+
+void eratosthenes() {
+	memset(isPrime, 1, sizeof(isPrime));
+
+	isPrime[0] = isPrime[1] = false;
+	int sqrtMax = int(sqrt(sizeMax));
+
+	for (int i = 2; i <= sqrtMax; i++) {
+		if(isPrime[i])
+			for (int j = i * i; j <= sizeMax; j += i) {
+				isPrime[j] = false;
+			}
+	}
+
+	for (int i = 2; i <= sizeMax; i++) {
+		if (isPrime[i])
+			prime[primeCnt++] = i;
+	}
+}
 
 int main() {
-	for (int i = 2; i < 34; i++) {
-		for (int j = i * i; j < 1121; j += i) {
-			isPrime[j] = true;
+	eratosthenes();
+
+	for (int i = 1; i < primeCnt; i++) {
+		for (int j = sizeMax; j >= prime[i]; j--) {
+			for (int k = 1; k <= 14; k++) {
+				pCnt[j][k] += pCnt[j - prime[i]][k - 1];
+			}
 		}
 	}
-	for(int i = 0; i < 1120; i++) {
-		if (isPrime[i] == false) prime[primeCnt++];
-	}
-	
+
 	int testCnt;
 	cin >> testCnt;
 
@@ -23,8 +49,7 @@ int main() {
 		int n; int k;
 		cin >> n >> k;
 
-
-
+		cout << pCnt[n][k] << endl;
 	}
 
 	return 0;
