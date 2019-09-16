@@ -42,5 +42,17 @@
     <ClCompile Include="2512번-예산.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="2805번-나무자르기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="1654번-랜선자르기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="소스.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="6679번-싱기한네자리숫자.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
